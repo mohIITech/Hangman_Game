@@ -1,37 +1,38 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include "welcome_ui.h"
 #include "leader_board.h"  // Include the leaderboard header
 #include "game_logic.h"  // Assuming all necessary headers are included
 #include "user_profiles.h"  // Include user profile management
 
 // Function to print the hangman figure based on incorrect guesses
 void printHangman(int incorrectGuesses) {
-    printf("  +----+\n");
+    printf(CYAN"  +----+\n");
     printf("  |    |\n");
 
     if (incorrectGuesses >= 1)
-        printf("  O    |\n");
+        printf(RED"  O    |\n"RESET);
     else
-        printf("       |\n");
+        printf(CYAN"       |\n"RESET);
 
     if (incorrectGuesses >= 2)
-        printf("  |    |\n");
+        printf(CYAN"  |    |\n"RESET);
     else
-        printf("       |\n");
+        printf(CYAN"       |\n"RESET);
 
     if (incorrectGuesses >= 3)
-        printf(" /|\\   |\n");
+        printf(CYAN" /|\\   |\n"RESET);
     else
-        printf("       |\n");
+        printf(CYAN"       |\n"RESET);
 
     if (incorrectGuesses >= 4)
-        printf(" / \\   |\n");
+        printf(CYAN" / \\   |\n"RESET);
     else
-        printf("       |\n");
+        printf(CYAN"       |\n"RESET);
 
-    printf("       |\n");
-    printf(" ========\n");
+    printf(CYAN"       |\n"RESET);
+    printf(CYAN" ========\n"RESET);
 }
 
 // Function to play the game

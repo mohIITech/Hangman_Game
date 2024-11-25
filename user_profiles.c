@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "user_profiles.h"
+#include "welcome_ui.h"
 
 #define MAX_USERS 100
 #define MAX_USERNAME_LENGTH 50
@@ -49,16 +50,16 @@ void handleUserLogin(User *user) {
     int choice;
     char username[MAX_USERNAME_LENGTH];
 
-    printf("1. Login\n");
-    printf("2. Register\n");
-    printf("Enter your choice: ");
+    printf(CYAN"1. Login\n");
+    printf(GREEN"2. Register\n");
+    printf(MAGENTA"Enter your choice: "RESET);
     scanf("%d", &choice);
-    getchar();  // Consume the newline character after scanf
+    getchar();  
 
     if (choice == 1) {
         printf("Enter your username: ");
         fgets(username, sizeof(username), stdin);
-        username[strcspn(username, "\n")] = 0;  // Remove newline character
+        username[strcspn(username, "\n")] = 0;  
 
         if (userExists(username)) {
             printf("Login successful! Welcome back, %s\n", username);

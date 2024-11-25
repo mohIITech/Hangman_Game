@@ -2,6 +2,7 @@
 #include <string.h>
 #include "leader_board.h"
 #include "user_profiles.h"
+#include "welcome_ui.h"
 
 void updateScore(char *username, int newScore) {
     FILE *file = fopen("leaderboard.txt", "r+");
@@ -61,13 +62,13 @@ void displayLeaderboard() {
         count++;
     }
 
-    printf("\n+--------------------------+\n");
-    printf("|   LEADERBOARD            |\n");
-    printf("+--------------------------+\n");
+    printf(MAGENTA"\n+--------------------------+\n"RESET);
+    printf(MAGENTA"|   LEADERBOARD            |\n"RESET);
+    printf(MAGENTA"+--------------------------+\n"RESET);
     for (int i = 0; i < count; i++) {
         printf("| %d. %-20s %-10d |\n", i+1, users[i].username, users[i].score);
     }
-    printf("+--------------------------+\n");
+    printf(MAGENTA"+--------------------------+\n"RESET);
 
     fclose(file);
 }

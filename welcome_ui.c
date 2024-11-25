@@ -1,21 +1,20 @@
 #include "welcome_ui.h"
 #include <stdio.h>
-#include <stdlib.h>  // For system() to clear the screen
+#include <stdlib.h>  
 
-// Function to clear the screen (cross-platform)
-void clearScreen() {
+
+void clearScreen() {    // a custom clear screen function for windows/(MAC , LINUX)
     #ifdef _WIN32
-        system("cls");  // For Windows
+        system("cls");  
     #else
-        system("clear");  // For Linux/Mac/WSL
+        system("clear");  
     #endif
 }
 
-// Function to print the welcome message
-void printWelcomeMessage() {
+void printWelcomeMessage() {        // made a ascii art for welcome message
     clearScreen();
     
-    // Printing the "HANGMAN" text in a styled format
+    
     for(int i=0; i<7; i++)
         printf("__ _ __ ");
     
@@ -24,17 +23,17 @@ void printWelcomeMessage() {
     printf("      ( H ) ( A ) ( N ) ( G ) ( M ) ( A ) ( N )\n");
     printf("       \\_/   \\_/   \\_/   \\_/   \\_/   \\_/   \\_/  \n");
 
-    printf("\n         !!! WELCOME TO THE HANGMAN GAME !!!        \n\n");
-    printf("BY : RISHU   ---   MOHIT   ---    AYUSH   ---   KARTIK\n");
+    printf(BLUE "\n         !!! WELCOME TO THE HANGMAN GAME !!!        \n\n" RESET);
+    printf(GREEN "BY : RISHU   ---   MOHIT   ---    AYUSH   ---   KARTIK\n" RESET);
 
     for(int i=0; i<7; i++)
         printf("__ _ __ ");
     printf("\n\nPress ENTER key to continue .......");
-    getchar();  // Wait for user input before continuing
+    getchar();  // used getchar function to keep the game on hold until player enters
     clearScreen();
 }
 
-// Function to display the main menu
+
 void displayMainMenu() {
     clearScreen();
 
