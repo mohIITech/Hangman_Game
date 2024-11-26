@@ -17,7 +17,7 @@ void displayUsers() {
 
     char username[MAX_USERNAME_LENGTH];
     while (fscanf(file, "%s", username) != EOF) {
-        printf("- %s\n", username);
+        printf("- %s\n", username);// use or EOF to end teh loop execution
     }
 
     fclose(file);
@@ -57,7 +57,8 @@ void handleUserLogin(User *user) {
     getchar();  
 
     if (choice == 1) {
-        printf("Enter your username: ");
+        printf("Enter your ");
+        printf(RED"username: "RESET);
         fgets(username, sizeof(username), stdin);
         username[strcspn(username, "\n")] = 0;  
 

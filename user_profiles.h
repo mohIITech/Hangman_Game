@@ -11,6 +11,7 @@ typedef struct {
 int userExists(char *username);
 void createUser(char *username);
 void handleUserLogin(User *user);
-void updateLeaderboard(User *user); // Add this function to update leaderboard
+void updateLeaderboard(User *user); 
 
-#endif // USER_PROFILES_H
+#endif 
+

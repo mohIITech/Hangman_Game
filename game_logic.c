@@ -2,11 +2,10 @@
 #include <string.h>
 #include <ctype.h>
 #include "welcome_ui.h"
-#include "leader_board.h"  // Include the leaderboard header
-#include "game_logic.h"  // Assuming all necessary headers are included
-#include "user_profiles.h"  // Include user profile management
+#include "leader_board.h"  
+#include "game_logic.h"  
+#include "user_profiles.h"  
 
-// Function to print the hangman figure based on incorrect guesses
 void printHangman(int incorrectGuesses) {
     printf(CYAN"  +----+\n");
     printf("  |    |\n");
@@ -35,29 +34,42 @@ void printHangman(int incorrectGuesses) {
     printf(CYAN" ========\n"RESET);
 }
 
-// Function to play the game
+
 void playGame(User *user, int difficultyLevel) {
-    // List of words and hints
     char words[3][20] = {"canteen", "library", "electronic"};
     char hints[3][50] = {"food mood", "please maintain silence", "devices run by circuits"};
 
-    // Select word and hint based on difficulty level
     char *word;
     char *hint;
 
-    if (difficultyLevel == 1) { // Easy
+    // Handle difficulty level input
+    if (difficultyLevel == 1) { // level is easy
         word = words[0];
         hint = hints[0];
-    } else if (difficultyLevel == 2) { // Medium
+    } else if (difficultyLevel == 2) { // medium
         word = words[1];
         hint = hints[1];
-    } else { // Hard
+    } else if (difficultyLevel == 3) { // Hard
         word = words[2];
         hint = hints[2];
+    } else {
+        // Loop until a valid level is entered
+        while (1) {
+            printf("\nPlease enter a valid Level (1-3): ");
+            scanf("%d", &difficultyLevel);
+            if (difficultyLevel >= 1 && difficultyLevel <= 3) {
+                break;
+            } else {
+                printf("Invalid level. Try again.\n");
+            }
+        }
+        // Call the playGame again with the valid difficultyLevel
+        playGame(user, difficultyLevel);
+        return;  // Exit the current playGame call after recursion
     }
 
     int wordLength = strlen(word);
-    char guessedWord[wordLength + 1]; // To store the guessed word (initially blank)
+    char guessedWord[wordLength + 1]; 
     for (int i = 0; i < wordLength; i++) {
         guessedWord[i] = '_';
     }
@@ -72,59 +84,51 @@ void playGame(User *user, int difficultyLevel) {
     printf("Word: %s\n", guessedWord);
     printf("\n");
 
-    // Start the game loop
     while (incorrectGuesses < maxIncorrectGuesses) {
         printf("Enter a letter to guess: ");
-        scanf(" %c", &guessedLetter);  // Added space to handle previous newline
-        guessedLetter = tolower(guessedLetter);  // Convert to lowercase for case insensitivity
+        scanf(" %c", &guessedLetter);  
+        guessedLetter = tolower(guessedLetter);  // Convert input to lowercase
 
         found = 0;
-        // Check the guessed letter against the word
         for (int i = 0; i < wordLength; i++) {
             if (word[i] == guessedLetter && guessedWord[i] == '_') {
                 guessedWord[i] = guessedLetter;
                 found = 1;
             }
         }
-
-        // If the letter is not found, increment the incorrect guesses
         if (!found) {
             incorrectGuesses++;
         }
 
-        // Print the hangman figure based on incorrect guesses
-        printHangman(incorrectGuesses);
+        printHangman(incorrectGuesses); // Display hangman based on incorrect guesses
 
-        // Print the guessed word so far
         printf("Word: %s\n", guessedWord);
-        printf("Incorrect guesses left: %d\n", maxIncorrectGuesses - incorrectGuesses);
+        printf("Remaining lives: %d\n", maxIncorrectGuesses - incorrectGuesses);
 
-        // Check if the user has guessed all letters
         if (strcmp(word, guessedWord) == 0) {
             printf("Congratulations, %s! You guessed the word correctly.\n", user->username);
-            user->score += 10; // Example score increment
+            user->score += 10;
             break;
         }
     }
 
-    // Game over if maximum incorrect guesses are reached
     if (incorrectGuesses == maxIncorrectGuesses) {
-        printf("Game Over! The word was: %s\n", word);
+        printf(RED"Game Over! \n"RESET);
+        printf("The word was: %s\n", word);
     }
 
-    printf("Your score: %d\n", user->score);
+    printf(GREEN"Your score: %d\n"RESET, user->score);
 
-    // Ask to show leaderboard or exit
     printf("Would you like to:\n1. Show Leaderboard\n2. Exit\nEnter your choice: ");
     int choice;
     scanf("%d", &choice);
 
     if (choice == 1) {
-        displayLeaderboard(); // Assuming this function is already implemented
+        displayLeaderboard();
     } else {
         printf("Exiting the game...\n");
     }
 
-    // Update leaderboard with the final score
-    updateScore(user->username, user->score); // Update the leaderboard with the current score
+    updateScore(user->username, user->score); // Update leaderboard with the new score
 }
+

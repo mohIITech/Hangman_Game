@@ -13,4 +13,4 @@ void clearScreen();
 #define MAGENTA "\033[35m"
 #define CYAN "\033[36m"
 
-#endif // WELCOME_UI_H
+#endif 

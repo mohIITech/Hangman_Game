@@ -1,8 +1,6 @@
-// functions.h
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-// Function Prototypes
 int selectLevel();
 void handleUserLogin();
 void displayLeaderboard();

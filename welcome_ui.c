@@ -29,7 +29,7 @@ void printWelcomeMessage() {        // made a ascii art for welcome message
     for(int i=0; i<7; i++)
         printf("__ _ __ ");
     printf("\n\nPress ENTER key to continue .......");
-    getchar();  // used getchar function to keep the game on hold until player enters
+    getchar();  // we used getchar function to keep the game on hold until player enters
     clearScreen();
 }
 
@@ -37,12 +37,12 @@ void printWelcomeMessage() {        // made a ascii art for welcome message
 void displayMainMenu() {
     clearScreen();
 
-    printf("  +---------------------+\n");
+    printf(MAGENTA"  +---------------------+\n");
     printf("  |     MAIN MENU       |\n");
-    printf("  +---------------------+\n");
+    printf("  +---------------------+\n"RESET);
     printf("  | 1. Start Game       |\n");
     printf("  | 2. View Leaderboard |\n");
     printf("  | 3. Exit             |\n");
-    printf("  +---------------------+\n");
+    printf(MAGENTA"  +---------------------+\n"RESET);
     printf("Enter your choice: ");
 }
