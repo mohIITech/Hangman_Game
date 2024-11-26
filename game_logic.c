@@ -42,7 +42,6 @@ void playGame(User *user, int difficultyLevel) {
     char *word;
     char *hint;
 
-    // Handle difficulty level input
     if (difficultyLevel == 1) { // level is easy
         word = words[0];
         hint = hints[0];
@@ -53,7 +52,7 @@ void playGame(User *user, int difficultyLevel) {
         word = words[2];
         hint = hints[2];
     } else {
-        // Loop until a valid level is entered
+        // run the loop until a valid level is entered
         while (1) {
             printf("\nPlease enter a valid Level (1-3): ");
             scanf("%d", &difficultyLevel);
@@ -63,9 +62,9 @@ void playGame(User *user, int difficultyLevel) {
                 printf("Invalid level. Try again.\n");
             }
         }
-        // Call the playGame again with the valid difficultyLevel
+        // call the playGame again with the valid difficultyLevel to enter values again
         playGame(user, difficultyLevel);
-        return;  // Exit the current playGame call after recursion
+        return; 
     }
 
     int wordLength = strlen(word);
@@ -87,7 +86,7 @@ void playGame(User *user, int difficultyLevel) {
     while (incorrectGuesses < maxIncorrectGuesses) {
         printf("Enter a letter to guess: ");
         scanf(" %c", &guessedLetter);  
-        guessedLetter = tolower(guessedLetter);  // Convert input to lowercase
+        guessedLetter = tolower(guessedLetter);  // convert the upper input chars to lowercase
 
         found = 0;
         for (int i = 0; i < wordLength; i++) {
@@ -100,7 +99,7 @@ void playGame(User *user, int difficultyLevel) {
             incorrectGuesses++;
         }
 
-        printHangman(incorrectGuesses); // Display hangman based on incorrect guesses
+        printHangman(incorrectGuesses); // display hangman according to lives left
 
         printf("Word: %s\n", guessedWord);
         printf("Remaining lives: %d\n", maxIncorrectGuesses - incorrectGuesses);
@@ -129,6 +128,6 @@ void playGame(User *user, int difficultyLevel) {
         printf("Exiting the game...\n");
     }
 
-    updateScore(user->username, user->score); // Update leaderboard with the new score
+    updateScore(user->username, user->score); 
 }
 
