@@ -7,10 +7,13 @@ You can also keep track of your score on a leaderboard!
 
 ## Snapshots1
 
-<p float="left">
-  <img src="images/image_1.png" width="250" />
-  <img src="images/image_2.png" width="250" /> 
-  <img src="images/image_3.png" width="250" />
+<p align="center">
+  <img src="images/image_1.png" width="500" /> 
+</p>
+
+<p align="center">
+  <img src="images/image_2.png" width="300" /> 
+  <img src="images/image_3.png" width="300" />
 </p>
 
 
