@@ -5,6 +5,12 @@ In this game, you’ll guess letters to figure out a hidden word, and try to avo
 The completion of figure is the end of you game.....so be carefull.   
 You can also keep track of your score on a leaderboard!
 
+## Snapshots1
+
+![Snapshot 1](images/image_1.png)
+![Snapshot 2](images/image_2.png)
+![Snapshot 3](images/image_3.png)
+
 ## Features we added
 
 - **User Profiles**: Create and save your profile with your username and score.
