@@ -7,9 +7,12 @@ You can also keep track of your score on a leaderboard!
 
 ## Snapshots1
 
-![Snapshot 1](images/image_1.png)
-![Snapshot 2](images/image_2.png)
-![Snapshot 3](images/image_3.png)
+<p float="left">
+  <img src="images/image_1.png" width="250" />
+  <img src="images/image_2.png" width="250" /> 
+  <img src="images/image_3.png" width="250" />
+</p>
+
 
 ## Features we added
 
